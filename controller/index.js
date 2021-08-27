@@ -33,7 +33,7 @@ export default class TestController {
     async test(ctx) {
         ctx.body = {
             code: 0,
-            message: "success"
+            message: "Test Success"
         }
     }
 
