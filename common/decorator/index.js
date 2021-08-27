@@ -2,9 +2,9 @@
  * 请求方法
  */
 export const RequestMethod = {
-    "GET":"get",
+    "GET": "get",
     "POST": "post",
-    "PUT": "pust",
+    "PUT": "put",
     "DELETE": "delete",
     "OPTION": "option",
     "PATCH": "patch"
@@ -17,10 +17,10 @@ export const controllers = [];
 
 /**
  * 给controller添加装饰
- * @param {*} path 
+ * @param {*} path
  */
-export function Controller(path=""){
-    return function(target){
+export function Controller(path = "") {
+    return function (target) {
         // 给controller类添加路由前缀
         console.log(target)
         target.prefix = path;
@@ -33,24 +33,24 @@ export function Controller(path=""){
  * method 请求方法
  * middleware 中间件
  */
-export function RequestMapping({url="",method="",middleware=[]}){
-    return function(target,name,descriptor){
-        let path = "";
+export function RequestMapping({url = "", method = "", middleware = []}) {
+    return function (target, name, descriptor) {
+        let path;
         // 判断有没有定义url
-        if(!url){
+        if (!url) {
             // 取方法名作为路径
             path = `/${name}`;
-        }else{
+        } else {
             // 自己定义的url
             path = url;
         }
         // 创建router需要的数据 url，method，middleware（可以没有）,最终执行的方法，装饰器队对象的构造函数
         const item = {
-            url:path,
-            method:method,
-            middleware:middleware,
-            handler:target[name],
-            constructor:target.constructor,
+            url: path,
+            method: method,
+            middleware: middleware,
+            handler: target[name],
+            constructor: target.constructor,
         };
         controllers.push(item);
     }

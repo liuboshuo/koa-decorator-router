@@ -11,10 +11,10 @@ const router = new Router();
 app.use(compress());
 app.use(bodyparser());
 
-initRoutes(app,router)
+initRoutes(app, router)
 
 const PORT = 8081;
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log(`启动成功! env=${process.env.NODE_ENV}`)
     console.log(`Listening at http://localhost:${PORT}`)
 })

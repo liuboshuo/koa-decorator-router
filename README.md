@@ -3,9 +3,11 @@
 ## 前言
 
 在node项目，不管是koa/express路由的使用中，我们创建路由一般都是这样的姿势
+
 ```
 router.post("/api/test", middleware, handler); // 创建路由
 ```
+
 比如：
 
 ![router.jpg](https://upload-images.jianshu.io/upload_images/2152694-b0152a4431d61a0a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -31,6 +33,7 @@ router.post("/api/test", middleware, handler); // 创建路由
 ```
 npm install -S  koa koa-router koa-bodyparser koa-compress
 ```
+
 * koa-router 管理路由
 * koa-bodyparser 读取post,put数据转化对象格式
 * koa-compress 压缩请求数据提高传输速度
@@ -49,6 +52,7 @@ npm install -D @babel/preset-env
 npm install -D @babel/plugin-proposal-decorators
 npm install -D @babel/register
 ```
+
 babel7版本 使用的是@babel，7以下是babel-xxx 这点很容易区分
 
 下面介绍一下这些包的功能
@@ -61,6 +65,7 @@ babel7版本 使用的是@babel，7以下是babel-xxx 这点很容易区分
 然后在项目根目录创建.babelrc文件
 
 配置预设，插件
+
 ```
 {
   "presets": [
@@ -75,13 +80,15 @@ babel7版本 使用的是@babel，7以下是babel-xxx 这点很容易区分
   ]
 }
 ```
+
 到此，配置结束。项目比较简单，这些babel配置在本项目已经足够使用，接下来就可以愉快的使用es6，装饰器新语法了
 
 #### 创建node服务
+
 新建`index.js，app.js`启动一个服务
 
-index.js 主要是进行babel注册，以及启动服务的中介文件。
-为什么会这样呢？在这个文件进行使用动态编译，但是编译的时候是不会编译index.js文件的，所以，这个文件还是需要使用e5的旧语法
+index.js 主要是进行babel注册，以及启动服务的中介文件。 为什么会这样呢？在这个文件进行使用动态编译，但是编译的时候是不会编译index.js文件的，所以，这个文件还是需要使用e5的旧语法
+
 ```
 require("@babel/register")
 require("./app")
@@ -223,7 +230,6 @@ export default (app,router) => {
 initRoutes(app,router)
 ```
 
-
 ## 使用
 
 创建controler/index.js , middleware/index.js
@@ -277,6 +283,7 @@ export default class TestController {
     
 }
 ```
+
 把conttroller/index.js 在 router/index.js导入并导出
 ```export * from "../controller/index"```
 如果还有其它controller，那么只需要在router/index.js添加就可以了~
