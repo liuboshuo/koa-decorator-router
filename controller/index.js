@@ -1,8 +1,8 @@
-import {Controller, RequestMapping, RequestMethod} from '../common/decorator/index'
+import {RestController, RequestMapping, RequestMethod, GetMapping} from '../common/decorator/index'
 import TestFun from '../middleware/index'
 
 // 添加Controller前缀
-@Controller("/api/test")
+@RestController("/api/test")
 export default class TestController {
 
     // 基本面使用 /api/test/login
@@ -13,7 +13,15 @@ export default class TestController {
     async login(ctx) {
         ctx.body = {
             code: 0,
-            message: "success"
+            message: "Login Success"
+        }
+    }
+
+    @GetMapping("/logout")
+    async logout(ctx) {
+        ctx.body = {
+            code: 0,
+            message: "Logout Success"
         }
     }
 

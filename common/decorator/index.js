@@ -19,7 +19,7 @@ export const controllers = [];
  * 给controller添加装饰
  * @param {*} path
  */
-export function Controller(path = "") {
+export function RestController(path = "") {
     return function (target) {
         // 给controller类添加路由前缀
         console.log(target)
@@ -54,4 +54,24 @@ export function RequestMapping({url = "", method = "", middleware = []}) {
         };
         controllers.push(item);
     }
+}
+
+export function GetMapping(value = "", middleware = []) {
+    return RequestMapping({url: value, method: RequestMethod.GET, middleware: middleware})
+}
+
+export function PostMapping(value = "", middleware = []) {
+    return RequestMapping({url: value, method: RequestMethod.POST, middleware: middleware})
+}
+
+export function PutMapping(value = "", middleware = []) {
+    return RequestMapping({url: value, method: RequestMethod.PUT, middleware: middleware})
+}
+
+export function DeleteMapping(value = "", middleware = []) {
+    return RequestMapping({url: value, method: RequestMethod.DELETE, middleware: middleware})
+}
+
+export function PatchMapping(value = "", middleware = []) {
+    return RequestMapping({url: value, method: RequestMethod.PATCH, middleware: middleware})
 }
